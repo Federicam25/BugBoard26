@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="it">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Issue Tracker - Dashboard</title>
+    <link rel="stylesheet" href="css/style.css">
+    <script src="js/api.js"></script>
+    <script src="js/dashboard.js"></script>
+</head>
+<body>
+<div class="page-container">
+    <header class="page-header">
+        <h2 id="welcome-title"></h2>
+    </header>
+    <header class="page-header">
+        <h2>Issue Tracker Dashboard</h2>
+        <div class="header-actions">
+            <a href="createIssue.html" class="btn btn-primary">Nuova Issue</a>
+            <a id="create-user-panel" href="createUser.html" class="btn btn-secondary">Nuovo Utente</a>
+            <button onclick="logout()" class="btn btn-danger">Logout</button>
+        </div>
+    </header>
+
+    <!-- STATISTICHE -->
+    <div id="global-stats-container">
+        <div class="stats-container">
+            <div class="stat-card">
+                <h3>Bug aperti</h3>
+                <p id="stat-open"></p>
+            </div>
+
+            <div class="stat-card">
+                <h3>Tempo medio risoluzione</h3>
+                <p id="stat-avg"></p>
+            </div>
+        </div>
+
+        <h3>Bug per utente</h3>
+        <table>
+            <tbody id="stats-users"></tbody>
+        </table>
+
+        <h3>Tempo medio per utente</h3>
+        <table>
+            <tbody id="stats-time-users"></tbody>
+        </table>
+    </div>
+    <!-- FILTRI -->
+    <div class="filter-container">
+        <form id="filter-form" class="filter-form">
+            <div class="filter-group">
+                <label>Stato</label>
+                <select id="status">
+                    <option value="">Tutti</option>
+                    <option value="todo">TODO</option>
+                    <option value="in_progress">IN PROGRESS</option>
+                    <option value="done">DONE</option>
+                </select>
+            </div>
+
+            <div class="filter-group">
+                <label>Tipo</label>
+                <select id="type">
+                    <option value="">Tutti</option>
+                    <option value="QUESTION">QUESTION</option>
+                    <option value="BUG">BUG</option>
+                    <option value="DOCUMENTATION">DOCUMENTATION</option>
+                    <option value="FEATURE">FEATURE</option>
+                </select>
+            </div>
+            <div class="filter-group">
+                <label>Priorità</label>
+                <select id="priority">
+                    <option value="">Tutte</option>
+                    <option value="LOW">LOW</option>
+                    <option value="MEDIUM">MEDIUM</option>
+                    <option value="HIGH">HIGH</option>
+                </select>
+            </div>
+            <div class="filter-group">
+                <label>Ordina per</label>
+                <select id="orderBy">
+                    <option value="created_at">Data creazione</option>
+                    <option value="priority">Priorità</option>
+                    <option value="status">Stato</option>
+                </select>
+            </div>
+            <div class="filter-actions">
+                <button type="submit" class="btn btn-primary">Applica</button>
+                <button type="button" class="btn btn-secondary" onclick="resetFilters()">Reset</button>
+            </div>
+        </form>
+    </div>
+
+
+    <!-- TABELLA ISSUE -->
+    <div class="table-container">
+        <h3>Lista Issue</h3>
+        <table class="issue-table">
+            <thead>
+            <tr>
+                <th>ID</th>
+                <th>Titolo</th>
+                <th>Descrizione</th>
+                <th>Tipo</th>
+                <th>Priorità</th>
+                <th>Stato</th>
+                <th>Creato da</th>
+                <th>Assegnato a</th>
+                <th>Data creazione</th>
+            </tr>
+            </thead>
+            <tbody id="issues-table">
+            </tbody>
+        </table>
+    </div>
+</div>
+</body>
+</html>

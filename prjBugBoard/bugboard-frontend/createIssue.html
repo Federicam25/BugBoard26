@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="it">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Crea Issue</title>
+    <link rel="stylesheet" href="css/style.css">
+    <script src="js/api.js"></script>
+    <script src="js/createIssue.js"></script>
+</head>
+<body>
+<div class="page-container">
+    <header class="page-header">
+        <h2>Crea nuova Issue</h2>
+        <div class="header-actions">
+            <!--button onclick="logout()" class="btn btn-danger">Logout</button-->
+            <a href="dashboard.html" class="btn btn-secondary">Dashboard</a>
+        </div>
+    </header>
+
+    <div class="form-container">
+        <form id="create-issue-form">
+            <div class="form-group">
+                <label for="title">Titolo</label>
+                <input type="text" id="title" required>
+            </div>
+            <div class="form-group">
+                <label for="type">Tipo</label>
+                <select id="type">
+                    <option value="BUG">BUG</option>
+                    <option value="FEATURE">FEATURE</option>
+                    <option value="QUESTION">QUESTION</option>
+                    <option value="DOCUMENTATION">DOCUMENTATION</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="priority">Priorità</label>
+                <select id="priority">
+                    <option value=""></option>
+                    <option value="LOW">LOW</option>
+                    <option value="MEDIUM">MEDIUM</option>
+                    <option value="HIGH">HIGH</option>
+                </select>
+            </div>
+            <!--div class="form-group">
+                <label for="status">Stato</label>
+                <select id="status" readonly>
+                    <option value="todo">Todo</option>
+                    <option value="in_progress">In Progress</option>
+                    <option value="done">Done</option>
+                </select>
+            </div-->
+            <div class="form-group">
+                <label for="description">Descrizione</label>
+                <textarea id="description" rows="4" required></textarea>
+            </div>
+            <div class="form-actions">
+                <button type="submit" class="btn btn-primary">Crea Issue</button>
+            </div>
+        </form>
+    </div>
+</div>
+</body>
+</html>

@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="it">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Crea nuovo utente</title>
+    <link rel="stylesheet" href="css/style.css">
+    <script src="js/api.js"></script>
+    <script src="js/createUser.js"></script>
+</head>
+<body>
+<div class="page-container">
+    <header class="page-header">
+        <h2>Crea nuovo utente</h2>
+        <div class="header-actions">
+            <a href="dashboard.html" class="btn btn-secondary">Dashboard</a>
+            <!--button onclick="logout()" class="btn btn-danger">Logout</button-->
+        </div>
+    </header>
+
+    <div class="form-container">
+        <form id="create-user-form">
+            <div class="form-group">
+                <label for="email">Email</label>
+                <input type="email" id="email" required>
+            </div>
+            <div class="form-group">
+                <label for="password">Password</label>
+                <input type="password" id="password" required>
+            </div>
+            <div class="form-group">
+                <label for="role">Ruolo</label>
+                <select id="role">
+                    <option value="USER">USER</option>
+                    <option value="ADMIN">ADMIN</option>
+                </select>
+            </div>
+            <div class="form-actions">
+                <button type="submit" class="btn btn-primary">Crea utente</button>
+            </div>
+        </form>
+    </div>
+</div>
+</body>
+</html>

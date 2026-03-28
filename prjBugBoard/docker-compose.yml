@@ -1,0 +1,57 @@
+services:
+
+  sonarqube:
+    image: sonarqube:community
+    container_name: sonarqube
+    ports:
+        - "9000:9000"
+    environment:
+        SONAR_ES_BOOTSTRAP_CHECKS_DISABLE: "true"
+    volumes:
+        - sonarqube_data:/opt/sonarqube/data
+        - sonarqube_logs:/opt/sonarqube/logs
+        - sonarqube_extensions:/opt/sonarqube/extensions
+  
+  postgres:
+    image: postgres:17
+    container_name: postgres_db
+    environment:
+      POSTGRES_DB: bugboard
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: password
+    ports:
+      - "5432:5432"    
+    volumes:
+    - pgdata:/var/lib/postgresql/data
+    - ./db/dump.sql:/docker-entrypoint-initdb.d/dump.sql
+
+  backend:
+    build: ./bugboard-backend
+    container_name: backend_app
+    ports:
+      - "8080:8080"
+    depends_on:
+      - postgres
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:postgresql://postgres:5432/bugboard
+      SPRING_DATASOURCE_USERNAME: postgres
+      SPRING_DATASOURCE_PASSWORD: password
+      DB_HOST: postgres
+      DB_PORT: 5432
+      DB_NAME: bugboard
+      DB_USER: postgres
+      DB_PASSWORD: password
+
+  frontend:
+    build: ./bugboard-frontend
+    container_name: frontend_app
+    ports:
+      - "8081:80"  # container httpd espone 80, host mappa su 8081
+    depends_on:
+      - backend
+
+volumes:
+  pgdata:
+  sonarqube_data:
+  sonarqube_logs:
+  sonarqube_extensions:
